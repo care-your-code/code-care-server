@@ -1,7 +1,0 @@
-spring:
-  mail:
-    password: tfavodttgnfaeatu
-custom:
-  tossPayments:
-    clientKey: test_ck_ADpexMgkW36eDqeea798GbR5ozO0
-    secretKey: test_sk_LBa5PzR0Arn6lo4aJAzrvmYnNeDM
