@@ -3,6 +3,7 @@ package site.codecare.domain.user;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import site.codecare.global.common.entity.BaseEntity;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Getter
+@Getter @Setter
 public class UserInfo extends BaseEntity {
 
     private String username;
