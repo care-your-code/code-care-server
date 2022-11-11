@@ -1,0 +1,15 @@
+server:
+  port: 8010
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/code_care_dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: code_care
+    password: code_care1234!
+  jpa:
+    hibernate:
+      ddl-auto: create

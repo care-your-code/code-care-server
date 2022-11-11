@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://${prodDbIp}:3306/code_care_prod?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: ${prodDbId:code_care}
+    password: ${prodDbPw:code_care1234!}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        use_sql_comments: false
+    hibernate:
+      ddl-auto: none
+logging:
+  level:
+    root: info
+    com.project.Week_Mission.app: debug
+    org.hibernate.type.descriptor.sql: info
+custom:
+  site:
+    baseUrl: "https://service-domain"

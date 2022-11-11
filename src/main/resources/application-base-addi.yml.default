@@ -1,0 +1,7 @@
+spring:
+  mail:
+    password: NEED_TO_INPUT_GMAIL_APP_PASSWORD
+custom:
+  tossPayments:
+    clientKey: NEED_TO_INPUT
+    secretKey: NEED_TO_INPUT
