@@ -1,4 +1,4 @@
-package site.codecare.domain;
+package site.codecare.global.common.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

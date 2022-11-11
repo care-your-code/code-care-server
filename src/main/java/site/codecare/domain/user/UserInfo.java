@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import site.codecare.domain.BaseEntity;
+import site.codecare.global.common.entity.BaseEntity;
 
 import javax.persistence.*;
 
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @SuperBuilder
 @Getter
-public class User extends BaseEntity {
+public class UserInfo extends BaseEntity {
 
     private String username;
 
