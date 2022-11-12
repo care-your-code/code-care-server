@@ -15,9 +15,9 @@ public class MemberDto {
     private Role role;
 
     public MemberDto(Member member) {
-        id = member.getId();
-        email = member.getEmail();
-        passWord = member.getPassWord();
-        role = member.getRole();
+        this.id = member.getId();
+        this.email = member.getEmail();
+        this.passWord = member.getPassWord();
+        this.role = member.getRole();
     }
 }
