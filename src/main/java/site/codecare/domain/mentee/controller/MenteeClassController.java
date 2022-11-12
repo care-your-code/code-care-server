@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.service.MenteeClassService;
 
@@ -34,7 +35,7 @@ public class MenteeClassController {
     public String mypageInfo(Principal principal) {
 
         String email = principal.getName();
-        Member mentee = menteeClassService.findByEmail(email);
+        MemberDto menteeDto = menteeClassService.findByEmail(email);
 
         return "";
     }
