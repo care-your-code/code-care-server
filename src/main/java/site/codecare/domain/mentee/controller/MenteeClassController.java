@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.service.MenteeClassService;
 
 import java.security.Principal;
@@ -33,19 +34,20 @@ public class MenteeClassController {
     public String mypageInfo(Principal principal) {
 
         String email = principal.getName();
-        menteeClassService.findByEmail(email);
+        Member mentee = menteeClassService.findByEmail(email);
+
         return "";
     }
 
 
-//    /**
-//     * 개인정보 수정
-//     */
-//    @PatchMapping("/usr/mypage/info")
-//    public String mypageInfo() {
-//
-//        return "";
-//    }
+    /**
+     * 개인정보 수정
+     */
+    @PatchMapping("/usr/mypage/info")
+    public String mypageInfo() {
+
+        return "";
+    }
 
 
 //    /**

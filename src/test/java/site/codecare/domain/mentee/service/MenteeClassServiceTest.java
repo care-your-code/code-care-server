@@ -29,7 +29,7 @@ class MenteeClassServiceTest {
     /**
      * 멘티 개인정보 조회
      */
-    @Rollback(false)
+//    @Rollback(false)
     @Test
     void find_mentee_info() throws Exception {
 
