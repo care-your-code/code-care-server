@@ -22,10 +22,10 @@ public class Member extends BaseEntity {
     private String email;
 
     @Column()
-    private String name;
+    private String passWord;
 
     @Column()
-    private String passWord;
+    private String name;
 
     @Column()
     private String phoneNumber;
