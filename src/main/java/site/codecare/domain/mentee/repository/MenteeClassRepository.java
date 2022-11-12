@@ -1,7 +1,12 @@
 package site.codecare.domain.mentee.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import site.codecare.domain.mentee.entity.Mentee;
+import site.codecare.domain.mentee.entity.Member;
 
-public interface MenteeClassRepository extends JpaRepository<Mentee, Long> {
+import java.util.Optional;
+
+public interface MenteeClassRepository extends JpaRepository<Member, Long> {
+
+    Optional<Member> findByEmail(String email);
+
 }
