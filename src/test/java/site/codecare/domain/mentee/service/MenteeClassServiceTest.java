@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.repository.MenteeClassRepository;
 import site.codecare.domain.user.Role;
@@ -29,7 +30,6 @@ class MenteeClassServiceTest {
     /**
      * 멘티 개인정보 조회
      */
-//    @Rollback(false)
     @Test
     void find_mentee_info() throws Exception {
 
@@ -50,6 +50,27 @@ class MenteeClassServiceTest {
 
         //then
         assertThat(mentee.getId()).isEqualTo(foundMentee.getId());
+    }
+
+
+    @Test
+    void find_mentee_dto_info() throws Exception {
+
+        //given
+        Member mentee = Member.builder()
+                .email("jun@gmail.com")
+                .name("김준명")
+                .passWord("1234")
+                .role(Role.Mentee)
+                .build();
+
+        Member savedMentee = menteeClassRepository.save(mentee);
+
+        //when
+        MemberDto foundMenteeDto = menteeClassService.findByEmail(savedMentee.getEmail());
+
+        //then
+        assertThat(mentee.getId()).isEqualTo(foundMenteeDto.getId());
     }
 
 
