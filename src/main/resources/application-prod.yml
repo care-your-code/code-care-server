@@ -14,7 +14,7 @@ spring:
 logging:
   level:
     root: info
-    com.project.Week_Mission.app: debug
+    site.codecare: debug
     org.hibernate.type.descriptor.sql: info
 custom:
   site:
