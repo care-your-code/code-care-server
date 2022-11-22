@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mariadb://127.0.0.1:3306/code_care_local?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: code_care
-    password: ENC(6ynX3RlH0nd69c+Mh6F76G1vu1ip8EAL)
+    password: ENC(kwx4ldA3fMn0rruoUDWKa3JDwD/qfHGg)
   jpa:
     hibernate:
       ddl-auto: create
