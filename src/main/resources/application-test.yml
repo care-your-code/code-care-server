@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mariadb://${testDbIp:127.0.0.1}:3306/code_care_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: ${testDbId:code_care}
-    password: ${testDbPw:code_care1234!}
+    password: ${testDbPw:ENC(kwx4ldA3fMn0rruoUDWKa3JDwD/qfHGg)}
   jpa:
     hibernate:
       ddl-auto: create
