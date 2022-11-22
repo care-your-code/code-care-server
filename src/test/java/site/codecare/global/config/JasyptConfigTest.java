@@ -9,7 +9,7 @@ class JasyptConfigTest extends JasyptConfig{
 
     @Test
     public void jasypt_encrypt_decrypt_test() {
-        String plainText = "code_care1234!";
+        String plainText = "test1234";
 
         StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
         jasypt.setPassword("password");
