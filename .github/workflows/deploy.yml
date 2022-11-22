@@ -33,15 +33,23 @@ jobs:
         # GitHub-Actions 에서 설정한 값을 jasypt-encryptor-password.txt 파일에 쓰기
         echo "${{ secrets.ENCRYPTOR }}" >> ./jasypt-encryptor-password.txt
       shell: bash
-
+      
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+      
     ## gradle build
     - name: Build with Gradle
       run: ./gradlew bootJar
-
+      
+    ## DockerHub login
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     ## 웹 이미지 빌드 및 도커허브에 push
     - name: web docker build and push
       run: |
-        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-        docker build -t ${{ secrets.DOCKER_REPO }}/code-care-server .
-        docker push ${{ secrets.DOCKER_REPO }}/code-care-server
+        docker build -t ${{ secrets.DOCKERHUB_REPO }}/code-care-server .
+        docker push ${{ secrets.DOCKERHUB_REPO }}/code-care-server
