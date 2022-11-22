@@ -26,11 +26,8 @@ jobs:
     ## jasypt-encryptor-password.txt
     - name: make jasypt-encryptor-password.txt
       run: |
-        ## create jasypt-encryptor-password.txt
         cd ./src/main/resources
-        # jasypt-encryptor-password.txt 파일 생성
         touch ./jasypt-encryptor-password.txt
-        # GitHub-Actions 에서 설정한 값을 jasypt-encryptor-password.txt 파일에 쓰기
         echo "${{ secrets.ENCRYPTOR }}" >> ./jasypt-encryptor-password.txt
       shell: bash
       
