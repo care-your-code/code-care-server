@@ -9,10 +9,11 @@ spring:
   datasource:
     url: jdbc:mariadb://127.0.0.1:3306/code_care_local?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: code_care
-    password: ENC(wveEFiKe50Bs4JNiQ84wJxeyTLKLv8Sk)
+    password: code_care1234!
   jpa:
     hibernate:
       ddl-auto: create
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+    password: "test123"
