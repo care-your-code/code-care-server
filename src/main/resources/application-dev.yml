@@ -9,6 +9,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-jasypt:
-  encryptor:
-    bean: jasyptStringEncryptor

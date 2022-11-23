@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: dev
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
@@ -18,3 +18,7 @@ logging:
 custom:
   site:
     name: Code-Care
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password:
