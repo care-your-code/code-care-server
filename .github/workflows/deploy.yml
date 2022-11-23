@@ -2,7 +2,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: dev
+    branches: test/actionV1
   pull_request:
     branches: dev
 
@@ -23,25 +23,31 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    ## jasypt-encryptor-password.txt
-    - name: make jasypt-encryptor-password.txt
-      run: |
-        ## create jasypt-encryptor-password.txt
-        cd ./src/main/resources
-        # jasypt-encryptor-password.txt 파일 생성
-        touch ./jasypt-encryptor-password.txt
-        # GitHub-Actions 에서 설정한 값을 jasypt-encryptor-password.txt 파일에 쓰기
-        echo "${{ secrets.ENCRYPTOR }}" >> ./jasypt-encryptor-password.txt
-      shell: bash
-
+#     ## jasypt-encryptor-password.txt
+#     - name: make jasypt-encryptor-password.txt
+#       run: |
+#         cd ./src/main/resources
+#         touch ./jasypt-encryptor-password.txt
+#         echo "likelion" >> ./jasypt-encryptor-password.txt
+#         cat jasypt-encryptor-password.txt
+#       shell: bash
+      
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+      
     ## gradle build
     - name: Build with Gradle
-      run: ./gradlew bootJar
-
+      run: ./gradlew build -Pjasypt.encryptor.password=${{ secrets.JASYPTKEY }}
+      
+    ## DockerHub login
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     ## 웹 이미지 빌드 및 도커허브에 push
     - name: web docker build and push
       run: |
-        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-        docker build -t ${{ secrets.DOCKER_REPO }}/code-care-server .
-        docker push ${{ secrets.DOCKER_REPO }}/code-care-server
+        docker build -t ${{ secrets.DOCKERHUB_REPO }}/code-care-server .
+        docker push ${{ secrets.DOCKERHUB_REPO }}/code-care-server
