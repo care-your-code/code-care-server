@@ -23,21 +23,21 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    ## jasypt-encryptor-password.txt
-    - name: make jasypt-encryptor-password.txt
-      run: |
-        cd ./src/main/resources
-        touch ./jasypt-encryptor-password.txt
-        echo "likelion" >> ./jasypt-encryptor-password.txt
-        cat jasypt-encryptor-password.txt
-      shell: bash
+#     ## jasypt-encryptor-password.txt
+#     - name: make jasypt-encryptor-password.txt
+#       run: |
+#         cd ./src/main/resources
+#         touch ./jasypt-encryptor-password.txt
+#         echo "likelion" >> ./jasypt-encryptor-password.txt
+#         cat jasypt-encryptor-password.txt
+#       shell: bash
       
     - name: Make gradlew executable
       run: chmod +x ./gradlew
       
     ## gradle build
     - name: Build with Gradle
-      run: ./gradlew bootJar
+      run: ./gradlew build -Pjasypt.encryptor.password=${{ secrets.JASYPTKEY }}
       
     ## DockerHub login
     - name: Login to DockerHub
