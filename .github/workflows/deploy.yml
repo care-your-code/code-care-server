@@ -37,7 +37,7 @@ jobs:
       
     ## gradle build
     - name: Build with Gradle
-      run: ./gradlew build -Pjasypt.encryptor.password=${{ secrets.JASYPTKEY }}
+      run: ./gradlew build -Pjasypt.encryptor.password=likelion
       
     ## DockerHub login
     - name: Login to DockerHub
