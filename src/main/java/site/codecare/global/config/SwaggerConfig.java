@@ -20,7 +20,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.any()) //현재 RequestMapping으로 할당된 모든 URL 리스트를 추출
 //                .paths(PathSelectors.ant("/api/**")) //그 중 /api/**인 URL들만 필터링
-                .paths(PathSelectors.ant("/**")) //모든 URL
+                .paths(PathSelectors.ant("/**")) //모든 URL 표시
                 .build();
     }
 }

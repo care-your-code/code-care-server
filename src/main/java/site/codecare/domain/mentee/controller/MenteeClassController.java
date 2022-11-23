@@ -5,13 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.service.MenteeClassService;
 
 import java.security.Principal;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("")
 public class MenteeClassController {
@@ -32,12 +33,9 @@ public class MenteeClassController {
      * 개인정보 조회
      */
     @GetMapping("/usr/mypage/info")
-    public String mypageInfo(Principal principal) {
-
+    public MemberDto mypageInfo(Principal principal) {
         String email = principal.getName();
-        MemberDto menteeDto = menteeClassService.findByEmail(email);
-
-        return "";
+        return menteeClassService.findByEmail(email);
     }
 
 
