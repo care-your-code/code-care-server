@@ -21,9 +21,7 @@ public class MenteeClassService {
 
     @Transactional
     public void update(Long id, UpdateMemberRequest request) {
-        Optional<Member> optionalMember = menteeClassRepository.findById(id);
-        Member member = optionalMember.orElseThrow(
-                () -> new RuntimeException(id + " memberId is not found."));
+        Member member = findMemberById(id);
 
         if(!member.getName().equals(request.getName())) {
             member.update(request.getName());
