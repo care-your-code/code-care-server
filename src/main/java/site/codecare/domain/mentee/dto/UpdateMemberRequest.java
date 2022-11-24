@@ -1,4 +1,4 @@
-package site.codecare.domain.mentee.controller;
+package site.codecare.domain.mentee.dto;
 
 import lombok.Getter;
 import lombok.Setter;

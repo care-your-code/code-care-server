@@ -1,10 +1,11 @@
 package site.codecare.domain.mentee.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.MemberDto;
-import site.codecare.domain.mentee.entity.Member;
+import site.codecare.domain.mentee.dto.MemberRequest;
+import site.codecare.domain.mentee.dto.UpdateMemberRequest;
+import site.codecare.domain.mentee.dto.UpdateMemberResponse;
 import site.codecare.domain.mentee.service.MenteeClassService;
 
 import javax.validation.Valid;

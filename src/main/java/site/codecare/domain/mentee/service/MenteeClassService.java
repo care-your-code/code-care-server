@@ -4,13 +4,10 @@ package site.codecare.domain.mentee.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.codecare.domain.mentee.controller.UpdateMemberRequest;
+import site.codecare.domain.mentee.dto.UpdateMemberRequest;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.repository.MenteeClassRepository;
-
-import java.security.Principal;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
