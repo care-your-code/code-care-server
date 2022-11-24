@@ -19,13 +19,6 @@ public class MenteeClassService {
 
     private final MenteeClassRepository menteeClassRepository;
 
-    public MemberDto findByEmail(String email) {
-        Optional<Member> optionalMember = menteeClassRepository.findByEmail(email);
-        return optionalMember.map(o -> new MemberDto(o))
-                .orElseThrow(() -> new RuntimeException(email + " email is not found."));
-    }
-
-
     @Transactional
     public void update(Long id, UpdateMemberRequest request) {
         Optional<Member> optionalMember = menteeClassRepository.findById(id);
@@ -37,9 +30,26 @@ public class MenteeClassService {
         member.updateProfile(request.getProfile());
     }
 
+
+    public MemberDto findByEmail(String email) {
+        Member member = findMemberByEmail(email);
+        return new MemberDto(member);
+    }
+
+    private Member findMemberByEmail(String email) {
+        return menteeClassRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException(email + " email is not found."));
+    }
+
+
     public MemberDto findById(Long id) {
-        Optional<Member> optionalMember = menteeClassRepository.findById(id);
-        return optionalMember.map(o -> new MemberDto(o))
+        Member member = findMemberById(id);
+        return new MemberDto(member);
+    }
+
+    private Member findMemberById(Long id) {
+        return menteeClassRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(id + " memberId is not found."));
     }
+
 }
