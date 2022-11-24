@@ -33,7 +33,7 @@ class MenteeClassServiceTest {
     @Test
     void find_mentee_info() throws Exception {
 
-        //given
+        //arrange
         Member mentee = Member.builder()
                 .email("jun@gmail.com")
                 .name("김준명")
@@ -44,11 +44,11 @@ class MenteeClassServiceTest {
         Member savedMentee = menteeClassRepository.save(mentee);
 
 
-        //when
+        //act
         Member foundMentee = menteeClassRepository.findByEmail(savedMentee.getEmail()).get();
 
 
-        //then
+        //assert
         assertThat(mentee.getId()).isEqualTo(foundMentee.getId());
     }
 
@@ -56,7 +56,7 @@ class MenteeClassServiceTest {
     @Test
     void find_mentee_dto_info() throws Exception {
 
-        //given
+        //arrange
         Member mentee = Member.builder()
                 .email("jun@gmail.com")
                 .name("김준명")
@@ -66,10 +66,10 @@ class MenteeClassServiceTest {
 
         Member savedMentee = menteeClassRepository.save(mentee);
 
-        //when
+        //act
         MemberDto foundMenteeDto = menteeClassService.findByEmail(savedMentee.getEmail());
 
-        //then
+        //assert
         assertThat(mentee.getId()).isEqualTo(foundMenteeDto.getId());
     }
 
@@ -77,6 +77,11 @@ class MenteeClassServiceTest {
     /**
      * 멘티 개인정보 수정
      */
+    @Test
+    void update_mentee_info() throws Exception {
+
+
+    }
 
 
 
