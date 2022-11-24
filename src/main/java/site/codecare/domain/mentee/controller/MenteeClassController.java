@@ -3,7 +3,7 @@ package site.codecare.domain.mentee.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.MemberDto;
-import site.codecare.domain.mentee.dto.MemberRequest;
+import site.codecare.domain.mentee.dto.MemberEmailRequest;
 import site.codecare.domain.mentee.dto.UpdateMemberRequest;
 import site.codecare.domain.mentee.dto.UpdateMemberResponse;
 import site.codecare.domain.mentee.service.MenteeClassService;
@@ -32,7 +32,7 @@ public class MenteeClassController {
      * 개인정보 조회
      */
     @GetMapping("/info")
-    public MemberDto mypageInfo(Principal principal, @RequestBody @Valid MemberRequest request) {
+    public MemberDto mypageInfo(Principal principal, @RequestBody @Valid MemberEmailRequest request) {
         String email = principal.getName();
         return menteeClassService.findByEmail(email);
     }
