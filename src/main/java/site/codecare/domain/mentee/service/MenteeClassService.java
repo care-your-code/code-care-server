@@ -21,7 +21,7 @@ public class MenteeClassService {
         Member member = findMemberById(id);
 
         if(!member.getName().equals(request.getName())) {
-            member.update(request.getName());
+            member.updateName(request.getName());
         }
 
         if(!member.getPhoneNumber().equals(request.getPhoneNumber())) {

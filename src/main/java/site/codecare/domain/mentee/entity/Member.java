@@ -37,7 +37,7 @@ public class Member extends BaseEntity {
     private String profile;
 
 
-    public void update(String name) {
+    public void updateName(String name) {
         this.name = name;
     }
 
