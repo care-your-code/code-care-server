@@ -2,14 +2,12 @@ package site.codecare.domain.mentee.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.service.MenteeClassService;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -43,7 +41,8 @@ public class MenteeClassController {
      * 개인정보 수정
      */
     @PatchMapping("/usr/mypage/info")
-    public String mypageInfo() {
+    public String mypageInfo(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
+
 
         return "";
     }
