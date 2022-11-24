@@ -25,9 +25,17 @@ public class MenteeClassService {
         Member member = optionalMember.orElseThrow(
                 () -> new RuntimeException(id + " memberId is not found."));
 
-        member.update(request.getName());
-        member.updatePhoneNumber(request.getPhoneNumber());
-        member.updateProfile(request.getProfile());
+        if(!member.getName().equals(request.getName())) {
+            member.update(request.getName());
+        }
+
+        if(!member.getPhoneNumber().equals(request.getPhoneNumber())) {
+            member.updatePhoneNumber(request.getPhoneNumber());
+        }
+
+        if(!member.getProfile().equals(request.getProfile())) {
+            member.updateProfile(request.getProfile());
+        }
     }
 
 
