@@ -14,7 +14,6 @@ public class MemberDto {
     private String name;
     private String phoneNumber;
     private Role role;
-
     private String profile;
 
     public MemberDto(Member member) {
