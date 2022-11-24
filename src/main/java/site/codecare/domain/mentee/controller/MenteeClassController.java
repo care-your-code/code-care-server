@@ -41,10 +41,10 @@ public class MenteeClassController {
      * 개인정보 수정
      */
     @PatchMapping("/usr/mypage/info")
-    public String mypageInfo(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
-
-
-        return "";
+    public UpdateMemberResponse mypageInfo(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
+        menteeClassService.update(id, request);
+        MemberDto memberDto = menteeClassService.findById(id);
+        return new UpdateMemberResponse(memberDto.getId(), memberDto.getName(), memberDto.getPhoneNumber(), memberDto.getProfile());
     }
 
 

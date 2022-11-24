@@ -37,4 +37,15 @@ public class Member extends BaseEntity {
     private String profile;
 
 
+    public void update(String name) {
+        this.name = name;
+    }
+
+    public void updatePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void updateProfile(String profile) {
+        this.profile = profile;
+    }
 }
