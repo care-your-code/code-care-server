@@ -12,7 +12,7 @@ import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("")
+@RequestMapping("/usr/mypage")
 public class MenteeClassController {
 
     private final MenteeClassService menteeClassService;
@@ -21,7 +21,7 @@ public class MenteeClassController {
 //    /**
 //     * 마이페이지로 이동
 //     */
-//    @GetMapping("/usr/mypage")
+//    @GetMapping("")
 //    public String mypage() {
 //        return "";
 //    }
@@ -30,7 +30,7 @@ public class MenteeClassController {
     /**
      * 개인정보 조회
      */
-    @GetMapping("/usr/mypage/info")
+    @GetMapping("/info")
     public MemberDto mypageInfo(Principal principal) {
         String email = principal.getName();
         return menteeClassService.findByEmail(email);
@@ -40,7 +40,7 @@ public class MenteeClassController {
     /**
      * 개인정보 수정
      */
-    @PatchMapping("/usr/mypage/info")
+    @PatchMapping("/info")
     public UpdateMemberResponse mypageInfo(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
         menteeClassService.update(id, request);
         MemberDto memberDto = menteeClassService.findById(id);
@@ -51,7 +51,7 @@ public class MenteeClassController {
 //    /**
 //     * 수강중인 클래스 조회
 //     */
-//    @GetMapping("/usr/mypage/info")
+//    @GetMapping("/info")
 //    public String mypageClass() {
 //
 //        return "";
