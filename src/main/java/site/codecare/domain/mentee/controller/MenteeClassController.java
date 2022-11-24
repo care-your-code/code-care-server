@@ -32,9 +32,8 @@ public class MenteeClassController {
      * 개인정보 조회
      */
     @GetMapping("/info")
-    public MemberDto mypageInfo(Principal principal, @RequestBody @Valid MemberEmailRequest request) {
-        String email = principal.getName();
-        return menteeClassService.findByEmail(email);
+    public MemberDto mypageInfo(@RequestBody @Valid MemberEmailRequest request) {
+        return menteeClassService.findByEmail(request.getEmail());
     }
 
 
