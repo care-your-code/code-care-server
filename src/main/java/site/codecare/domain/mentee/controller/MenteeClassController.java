@@ -1,5 +1,7 @@
 package site.codecare.domain.mentee.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.MemberDto;
@@ -28,20 +30,17 @@ public class MenteeClassController {
 //    }
 
 
-    /**
-     * 개인정보 조회
-     */
+
+    @Operation(description = "개인정보조회")
     @GetMapping("/info")
-    public MemberDto mypageInfo(@RequestBody @Valid MemberEmailRequest request) {
+    public MemberDto mypageInfo(@Parameter @Valid MemberEmailRequest request) {
         return menteeClassService.findByEmail(request.getEmail());
     }
 
 
-    /**
-     * 개인정보 수정
-     */
+    @Operation(description = "개인정보수정")
     @PatchMapping("/info")
-    public UpdateMemberResponse mypageInfo(@PathVariable("id") Long id, @RequestBody @Valid UpdateMemberRequest request) {
+    public UpdateMemberResponse mypageInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMemberRequest request) {
         menteeClassService.update(id, request);
         MemberDto memberDto = menteeClassService.findById(id);
         return new UpdateMemberResponse(memberDto.getId(), memberDto.getName(), memberDto.getPhoneNumber(), memberDto.getProfile());
