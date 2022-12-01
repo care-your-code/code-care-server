@@ -95,4 +95,25 @@ public class RoomServiceTest {
         assertThat(findRoom.getClients().get(email))
                 .isSameAs(session);
     }
+
+    @Test
+    public void 과외방에_인원_나감_및_확인(){
+        // Arrange
+        roomName = "교육 방4";
+        roomService.saveRoom(roomName);
+        roomService.addClient(roomName, email, session);
+
+        // Act
+        roomService.removeClient(roomName, email);
+
+        // select room
+        Room findRoom = roomService.findRoomByName(roomName)
+                .orElseThrow(() -> new RuntimeException("괴외방 나감 및 확인 error"));
+
+        // Assert
+        assertThat(findRoom)
+                .isNotNull();
+        assertThat(findRoom.getClients().get(email))
+                .isNull();
+    }
 }

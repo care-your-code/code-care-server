@@ -37,13 +37,24 @@ public class RoomService {
 
     @CachePut(cacheNames = "webrtcRoom", key = "#name")
     public Room addClient(String name, String email, WebSocketSession session) {
-        log.info(name);
         // 이름에 맞는 방 찾음
         Room findRoom = ((RoomService) AopContext.currentProxy()).findRoomByName(name)
                 .orElseThrow(() -> new RuntimeException("방이 존재하지 않습니다."));
 
         // 방에 client 정보 추가
         findRoom.getClients().put(email, session);
+
+        return findRoom;
+    }
+
+    @CachePut(cacheNames = "webrtcRoom", key = "#name")
+    public Room removeClient(String name, String email) {
+        // 이름에 맞는 방 찾음
+        Room findRoom = ((RoomService) AopContext.currentProxy()).findRoomByName(name)
+                .orElseThrow(() -> new RuntimeException("방이 존재하지 않습니다."));
+
+        // 방에 client 정보 삭제
+        findRoom.getClients().remove(email);
 
         return findRoom;
     }
