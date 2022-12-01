@@ -54,8 +54,6 @@ dependencies {
 	//Swagger
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
 
-	//Jackson-databind
-//	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
 
 	//json
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
