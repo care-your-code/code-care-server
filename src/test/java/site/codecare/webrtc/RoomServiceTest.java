@@ -116,4 +116,43 @@ public class RoomServiceTest {
         assertThat(findRoom.getClients().get(email))
                 .isNull();
     }
+
+    @Test
+    public void 과외방_제거_및_확인(){
+        // Arrange
+        roomName = "교육 방5";
+        roomService.saveRoom(roomName);
+        roomService.addClient(roomName, email, session);
+
+        // Act
+        roomService.removeRoom(roomName);
+
+        Room findRoom = roomService.findRoomByName(roomName)
+                .orElse(null);
+
+        // Assert
+        assertThat(findRoom)
+                .isNull();
+    }
+
+    @Test
+    public void 과외방_존재하지_않는키_제거_및_확인(){
+        // Arrange
+        roomName = "교육 방5";
+        Room room = new Room(roomName);
+        roomService.saveRoom(roomName);
+
+        // Act
+        boolean result = roomService.removeRoom("임시 방");
+        System.out.println(result);
+
+        Room findRoom = roomService.findRoomByName(roomName)
+                .orElse(null);
+
+        // Assert
+        assertThat(findRoom)
+                .isNotNull()
+                .usingRecursiveComparison()
+                .isEqualTo(room);
+    }
 }
