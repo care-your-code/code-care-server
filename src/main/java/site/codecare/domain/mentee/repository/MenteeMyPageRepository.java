@@ -5,7 +5,7 @@ import site.codecare.domain.mentee.entity.Member;
 
 import java.util.Optional;
 
-public interface MenteeClassRepository extends JpaRepository<Member, Long> {
+public interface MenteeMyPageRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByEmail(String email);
 

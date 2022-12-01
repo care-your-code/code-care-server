@@ -7,14 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import site.codecare.domain.mentee.dto.UpdateMemberRequest;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
-import site.codecare.domain.mentee.repository.MenteeClassRepository;
+import site.codecare.domain.mentee.repository.MenteeMyPageRepository;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MenteeClassService {
+public class MenteeMyPageService {
 
-    private final MenteeClassRepository menteeClassRepository;
+    private final MenteeMyPageRepository menteeMyPageRepository;
 
     @Transactional
     public void update(Long id, UpdateMemberRequest request) {
@@ -40,7 +40,7 @@ public class MenteeClassService {
     }
 
     private Member findMemberByEmail(String email) {
-        return menteeClassRepository.findByEmail(email)
+        return menteeMyPageRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException(email + " email is not found."));
     }
 
@@ -51,7 +51,7 @@ public class MenteeClassService {
     }
 
     private Member findMemberById(Long id) {
-        return menteeClassRepository.findById(id)
+        return menteeMyPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(id + " memberId is not found."));
     }
 

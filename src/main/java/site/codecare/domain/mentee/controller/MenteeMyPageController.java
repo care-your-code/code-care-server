@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.*;
-import site.codecare.domain.mentee.service.MenteeClassService;
+import site.codecare.domain.mentee.service.MenteeMyPageService;
 import site.codecare.global.base.RsData;
 import site.codecare.util.Ut;
 
@@ -17,9 +17,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/usr/mypage", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-public class MenteeClassController {
+public class MenteeMyPageController {
 
-    private final MenteeClassService menteeClassService;
+    private final MenteeMyPageService menteeMyPageService;
 
 
 //    /**
@@ -35,7 +35,7 @@ public class MenteeClassController {
     @Operation(description = "개인정보조회")
     @GetMapping("/info")
     public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MemberEmailRequest request) {
-        MemberDto memberDto = menteeClassService.findByEmail(request.getEmail());
+        MemberDto memberDto = menteeMyPageService.findByEmail(request.getEmail());
 
         return Ut.sp.responseEntityOf(RsData.successOf(
                 new MemberResponse(memberDto)));
@@ -45,8 +45,8 @@ public class MenteeClassController {
     @Operation(description = "개인정보수정")
     @PatchMapping("/info")
     public UpdateMemberResponse menteeInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMemberRequest request) {
-        menteeClassService.update(id, request);
-        MemberDto memberDto = menteeClassService.findById(id);
+        menteeMyPageService.update(id, request);
+        MemberDto memberDto = menteeMyPageService.findById(id);
         return new UpdateMemberResponse(memberDto.getId(), memberDto.getName(), memberDto.getPhoneNumber(), memberDto.getProfile());
     }
 

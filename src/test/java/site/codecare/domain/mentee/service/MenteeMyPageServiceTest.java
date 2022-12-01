@@ -3,16 +3,12 @@ package site.codecare.domain.mentee.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
-import site.codecare.domain.mentee.repository.MenteeClassRepository;
+import site.codecare.domain.mentee.repository.MenteeMyPageRepository;
 import site.codecare.domain.user.Role;
-
-import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 @ActiveProfiles("test")
 //@MockBean
-class MenteeClassServiceTest {
+class MenteeMyPageServiceTest {
 
     @Autowired
-    MenteeClassRepository menteeClassRepository;
+    MenteeMyPageRepository menteeMyPageRepository;
 
     @Autowired
-    MenteeClassService menteeClassService;
+    MenteeMyPageService menteeMyPageService;
 
 
     /**
@@ -43,11 +39,11 @@ class MenteeClassServiceTest {
                 .role(Role.Mentee)
                 .build();
 
-        Member savedMentee = menteeClassRepository.save(mentee);
+        Member savedMentee = menteeMyPageRepository.save(mentee);
 
 
         //act
-        Member foundMentee = menteeClassRepository.findByEmail(savedMentee.getEmail()).get();
+        Member foundMentee = menteeMyPageRepository.findByEmail(savedMentee.getEmail()).get();
 
 
         //assert
@@ -66,10 +62,10 @@ class MenteeClassServiceTest {
                 .role(Role.Mentee)
                 .build();
 
-        Member savedMentee = menteeClassRepository.save(mentee);
+        Member savedMentee = menteeMyPageRepository.save(mentee);
 
         //act
-        MemberDto foundMenteeDto = menteeClassService.findByEmail(savedMentee.getEmail());
+        MemberDto foundMenteeDto = menteeMyPageService.findByEmail(savedMentee.getEmail());
 
         //assert
         assertThat(mentee.getId()).isEqualTo(foundMenteeDto.getId());
