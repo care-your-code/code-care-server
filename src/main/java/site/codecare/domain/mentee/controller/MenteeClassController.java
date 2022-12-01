@@ -14,7 +14,6 @@ import site.codecare.global.base.RsData;
 import site.codecare.util.Ut;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -38,7 +37,7 @@ public class MenteeClassController {
 
     @Operation(description = "개인정보조회")
     @GetMapping("/info")
-    public ResponseEntity<RsData<MemberResponse>> mypageInfo(@Parameter @Valid MemberEmailRequest request) {
+    public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MemberEmailRequest request) {
         MemberDto memberDto = menteeClassService.findByEmail(request.getEmail());
 
         return Ut.sp.responseEntityOf(RsData.successOf(
@@ -48,7 +47,7 @@ public class MenteeClassController {
 
     @Operation(description = "개인정보수정")
     @PatchMapping("/info")
-    public UpdateMemberResponse mypageInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMemberRequest request) {
+    public UpdateMemberResponse menteeInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMemberRequest request) {
         menteeClassService.update(id, request);
         MemberDto memberDto = menteeClassService.findById(id);
         return new UpdateMemberResponse(memberDto.getId(), memberDto.getName(), memberDto.getPhoneNumber(), memberDto.getProfile());
