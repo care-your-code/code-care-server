@@ -2,10 +2,12 @@ package site.codecare.domain.mentee.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.*;
@@ -15,6 +17,7 @@ import site.codecare.util.Ut;
 
 import javax.validation.Valid;
 
+import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -25,19 +28,8 @@ public class MenteeMyPageController {
 
     private final MenteeMyPageService menteeMyPageService;
 
-
-//    /**
-//     * 마이페이지로 이동
-//     */
-//    @GetMapping("")
-//    public String mypage() {
-//        return "";
-//    }
-
-
-
-    @Operation(description = "개인정보조회")
-    @GetMapping("/info")
+    @Operation(description = "개인정보조회", security = @SecurityRequirement(name = "bearerAuth"))
+    @GetMapping(value = "/info", consumes = ALL_VALUE)
     public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MemberEmailRequest request) {
         MemberDto memberDto = menteeMyPageService.findByEmail(request.getEmail());
 
