@@ -2,7 +2,10 @@ package site.codecare.domain.mentee.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.*;
@@ -17,6 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/usr/mypage", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@Tag(name = "MenteeMyPageController", description = "개인정보조회, 개인정보수정, 수강중인 클래스 정보 제공 기능을 담당")
 public class MenteeMyPageController {
 
     private final MenteeMyPageService menteeMyPageService;
@@ -37,8 +41,8 @@ public class MenteeMyPageController {
     public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MemberEmailRequest request) {
         MemberDto memberDto = menteeMyPageService.findByEmail(request.getEmail());
 
-        return Ut.sp.responseEntityOf(RsData.successOf(
-                new MemberResponse(memberDto)));
+        return Ut.sp.responseEntityOf
+                (RsData.successOf(new MemberResponse(memberDto)));
     }
 
 
