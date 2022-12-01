@@ -14,6 +14,9 @@ import org.springframework.web.socket.WebSocketSession;
 import site.codecare.webrtc.entity.Room;
 import site.codecare.webrtc.service.RoomService;
 
+import java.util.Map;
+import java.util.Objects;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
@@ -138,7 +141,7 @@ public class RoomServiceTest {
     @Test
     public void 과외방_존재하지_않는키_제거_및_확인(){
         // Arrange
-        roomName = "교육 방5";
+        roomName = "교육 방6";
         Room room = new Room(roomName);
         roomService.saveRoom(roomName);
 
@@ -154,5 +157,25 @@ public class RoomServiceTest {
                 .isNotNull()
                 .usingRecursiveComparison()
                 .isEqualTo(room);
+    }
+
+    @Test
+    public void 괴외방_모든인원_가져오기_및_확인(){
+        // Arrange
+        roomName = "교육 방7";;
+        roomService.saveRoom(roomName);
+        roomService.addClient(roomName, email, session);
+        roomService.addClient(roomName, "test2@test.com", mock(WebSocketSession.class));
+
+        Room room = roomService.findRoomByName(roomName).orElse(null);
+
+        // Act
+        Map<String, WebSocketSession> clients = roomService.findClients(roomName);
+
+        // Assert
+        assertThat(clients)
+                .isNotNull()
+                .usingRecursiveComparison()
+                .isEqualTo(Objects.requireNonNull(room).getClients());
     }
 }

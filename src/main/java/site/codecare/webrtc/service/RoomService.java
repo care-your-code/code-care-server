@@ -11,6 +11,8 @@ import org.springframework.web.socket.WebSocketSession;
 import site.codecare.webrtc.entity.Room;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -23,6 +25,14 @@ public class RoomService {
           log.info("해당 room name은 cache에 존재하지 않습니다.");
 //        throw new RuntimeException("no room");
         return Optional.empty();
+    }
+    public Map<String, WebSocketSession> findClients(String name) {
+        Room findRoom = ((RoomService) AopContext.currentProxy()).findRoomByName(name)
+                .orElseThrow(() -> new RuntimeException("방이 존재하지 않습니다."));
+
+        Map<String, WebSocketSession> clients = findRoom.getClients();
+
+        return Collections.unmodifiableMap(clients);
     }
 
     @CachePut(cacheNames = "webrtcRoom", key = "#name")
@@ -64,4 +74,6 @@ public class RoomService {
     public boolean removeRoom(String name) {
         return true;
     }
+
+
 }
