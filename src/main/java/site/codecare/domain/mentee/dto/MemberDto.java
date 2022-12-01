@@ -1,5 +1,6 @@
 package site.codecare.domain.mentee.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import site.codecare.domain.mentee.entity.Member;

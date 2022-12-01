@@ -3,19 +3,24 @@ package site.codecare.domain.mentee.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.dto.MemberEmailRequest;
 import site.codecare.domain.mentee.dto.UpdateMemberRequest;
 import site.codecare.domain.mentee.dto.UpdateMemberResponse;
 import site.codecare.domain.mentee.service.MenteeClassService;
+import site.codecare.global.base.RsData;
+import site.codecare.util.Ut;
 
 import javax.validation.Valid;
 import java.security.Principal;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/usr/mypage")
+@RequestMapping(value = "/usr/mypage", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class MenteeClassController {
 
     private final MenteeClassService menteeClassService;
@@ -33,8 +38,11 @@ public class MenteeClassController {
 
     @Operation(description = "개인정보조회")
     @GetMapping("/info")
-    public MemberDto mypageInfo(@Parameter @Valid MemberEmailRequest request) {
-        return menteeClassService.findByEmail(request.getEmail());
+    public ResponseEntity<RsData<MemberResponse>> mypageInfo(@Parameter @Valid MemberEmailRequest request) {
+        MemberDto memberDto = menteeClassService.findByEmail(request.getEmail());
+
+        return Ut.sp.responseEntityOf(RsData.successOf(
+                new MemberResponse(memberDto)));
     }
 
 
