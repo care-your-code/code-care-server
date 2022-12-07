@@ -50,5 +50,5 @@ jobs:
         script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/code-care-server
             docker stop ${{ secrets.BACKEND_PROJECT_NAME }}
-            docker run --name=${{ secrets.BACKEND_PROJECT_NAME }} -d --rm -p 8080:8080 -e JAVA_OPTS=-Djasypt.encryptor.password=${{ secrets.JASYPT_KEY }} ${{ secrets.DOCKERHUB_USERNAME  }}/code-care-server
+            docker run --name=${{ secrets.BACKEND_PROJECT_NAME }} -d --rm -p 8080:8080 -e JAVA_OPTS=-Djasypt.encryptor.password=${{ secrets.JASYPTKEY }} ${{ secrets.DOCKERHUB_USERNAME  }}/code-care-server
             docker image prune -f
