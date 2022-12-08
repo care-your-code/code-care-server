@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
 # TODO : DB 서버 생성 후 수정 해야함
-    url: jdbc:mariadb://101.101.164.34:3306/code_care_dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://49.50.160.66:3306/code_care_dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: code_care
     password: ENC(kwx4ldA3fMn0rruoUDWKa3JDwD/qfHGg)
   jpa:
