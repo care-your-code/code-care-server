@@ -18,3 +18,7 @@ logging:
 custom:
   site:
     name: Code-Care
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password:
