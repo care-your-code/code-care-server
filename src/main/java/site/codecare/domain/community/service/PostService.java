@@ -9,6 +9,7 @@ import site.codecare.domain.community.repository.PostRepository;
 
 import java.util.NoSuchElementException;
 
+// TODO : 사용자 추가, 댓글 기능 추가, VIEW 중복 방지 세션? 쿠키? @VALID 적용
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
