@@ -25,7 +25,12 @@ public class PostService {
     public PostResponseDto findById(Long id) {
 
         Post entity = postRepository.findById(id).orElseThrow(NoSuchElementException::new);
-
+        updateView(id);
         return new PostResponseDto(entity);
+    }
+
+    @Transactional
+    public void updateView(Long id) {
+        this.postRepository.updateView(id);
     }
 }
