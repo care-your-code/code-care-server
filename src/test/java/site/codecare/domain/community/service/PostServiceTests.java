@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 @SpringBootTest
 @ActiveProfiles("test")
-public class CommunityServiceTests {
+public class PostServiceTests {
 
     @Autowired
     private PostService postService;
@@ -39,6 +39,26 @@ public class CommunityServiceTests {
         //Assert
 
         assertThat(postRepository.findById(1L)).isNotNull();
+
+    }
+
+    @DisplayName("게시물_조회된다")
+    void t2() throws Exception {
+        //Arrange
+
+        postService.save(Post.builder()
+                .title("title")
+                .content("content")
+                .email("code-care@naver.com")
+                .build());
+        //Act
+
+        Post post = postService.findById(1L);
+
+
+        //Assert
+
+        assertThat(post.getTitle()).isEqualTo("title");
 
     }
 }
