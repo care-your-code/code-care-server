@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import site.codecare.domain.community.dto.PostResponseDto;
 import site.codecare.domain.community.entity.Post;
 import site.codecare.domain.community.repository.PostRepository;
 
@@ -43,6 +44,7 @@ public class PostServiceTests {
     }
 
     @DisplayName("게시물_조회된다")
+    @Test
     void t2() throws Exception {
         //Arrange
 
@@ -53,7 +55,7 @@ public class PostServiceTests {
                 .build());
         //Act
 
-        Post post = postService.findById(1L);
+        PostResponseDto post = postService.findById(1L);
 
 
         //Assert

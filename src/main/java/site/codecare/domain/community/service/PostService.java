@@ -3,10 +3,13 @@ package site.codecare.domain.community.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.codecare.domain.community.dto.PostResponseDto;
 import site.codecare.domain.community.entity.Post;
 import site.codecare.domain.community.repository.PostRepository;
 
-@Transactional
+import java.util.NoSuchElementException;
+
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -17,5 +20,12 @@ public class PostService {
     public Long save(Post post) {
 
         return postRepository.save(post).getId();
+    }
+
+    public PostResponseDto findById(Long id) {
+
+        Post entity = postRepository.findById(id).orElseThrow(NoSuchElementException::new);
+
+        return new PostResponseDto(entity);
     }
 }
