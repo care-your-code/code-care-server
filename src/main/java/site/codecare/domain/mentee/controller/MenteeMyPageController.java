@@ -50,7 +50,7 @@ public class MenteeMyPageController {
      * 수강중인 클래스 조회
      */
     @Operation(description = "멘티 수강중인 클래스 조회", security = @SecurityRequirement(name = "bearerAuth"))
-    @GetMapping(value = "/info", consumes = ALL_VALUE)
+    @GetMapping(value = "/menteeClassInfo", consumes = ALL_VALUE)
     public ResponseEntity<RsData<MemberClassResponse>> mypageClass(@Parameter @Valid MemberEmailRequest request) {
         List<MemberClassDto> classDtos = menteeMyPageService.findClassByEmail(request.getEmail());
 
