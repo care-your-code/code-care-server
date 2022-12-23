@@ -16,7 +16,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPiConfig() {
         ArrayList<Server> servers = new ArrayList<>();
-        servers.add(new Server().url("http://localhost:8010").description("Local Server"));
+        servers.add(new Server().url("http://localhost:8080").description("Local Server"));
 
         //새로운 서버 url 추가하기
         servers.add(new Server().url("http://ip address:port").description("New Server"));
