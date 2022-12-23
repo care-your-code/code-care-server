@@ -8,11 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.*;
+import site.codecare.domain.mentee.MemberClassDto;
 import site.codecare.domain.mentee.service.MenteeMyPageService;
 import site.codecare.global.base.RsData;
 import site.codecare.util.Ut;
 
 import javax.validation.Valid;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -43,13 +46,16 @@ public class MenteeMyPageController {
     }
 
 
-//    /**
-//     * 수강중인 클래스 조회
-//     */
-//    @GetMapping("/info")
-//    public String mypageClass() {
-//
-//        return "";
-//    }
+    /**
+     * 수강중인 클래스 조회
+     */
+    @Operation(description = "멘티 수강중인 클래스 조회", security = @SecurityRequirement(name = "bearerAuth"))
+    @GetMapping(value = "/info", consumes = ALL_VALUE)
+    public ResponseEntity<RsData<MemberClassResponse>> mypageClass(@Parameter @Valid MemberEmailRequest request) {
+        List<MemberClassDto> classDtos = menteeMyPageService.findClassByEmail(request.getEmail());
+
+        return Ut.sp.responseEntityOf
+                (RsData.successOf(new MemberClassResponse(classDtos)));
+    }
 
 }

@@ -4,10 +4,15 @@ package site.codecare.domain.mentee.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import site.codecare.domain.mentee.MemberClass;
+import site.codecare.domain.mentee.MemberClassDto;
 import site.codecare.domain.mentee.dto.UpdateMemberRequest;
 import site.codecare.domain.mentee.dto.MemberDto;
 import site.codecare.domain.mentee.entity.Member;
 import site.codecare.domain.mentee.repository.MenteeMyPageRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -55,4 +60,13 @@ public class MenteeMyPageService {
                 .orElseThrow(() -> new RuntimeException(id + " memberId is not found."));
     }
 
+    public List<MemberClassDto> findClassByEmail(String email) {
+        List<MemberClass> memberClasses = menteeMyPageRepository.findClassByEmail(email);
+
+        List<MemberClassDto> classDtos = memberClasses.stream()
+                .map(o -> new MemberClassDto(o))
+                .collect(Collectors.toList());
+
+        return classDtos;
+    }
 }
