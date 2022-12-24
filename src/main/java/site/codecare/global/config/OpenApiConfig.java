@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 
+//local에서 어노테이션 설정
 @Configuration
 public class OpenApiConfig {
 
@@ -20,6 +21,7 @@ public class OpenApiConfig {
 
         //새로운 서버 url 추가하기
         servers.add(new Server().url("http://ip address:port").description("New Server"));
+
 
         return new OpenAPI()
                 .info(new Info().title("My Service").description("My Service Description")

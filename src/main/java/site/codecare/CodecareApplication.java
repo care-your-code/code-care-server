@@ -19,4 +19,10 @@ public class CodecareApplication {
 		SpringApplication.run(CodecareApplication.class, args);
 	}
 
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+
 }
