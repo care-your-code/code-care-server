@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import site.codecare.domain.mentee.dto.MemberDto;
-import site.codecare.domain.mentee.entity.Member;
+import site.codecare.domain.mentee.dto.MenteeDto;
+import site.codecare.domain.mentee.entity.Mentee;
 import site.codecare.domain.mentee.repository.MenteeMyPageRepository;
 import site.codecare.domain.user.Role;
 
@@ -32,18 +32,18 @@ class MenteeMyPageServiceTest {
     void find_mentee_info() throws Exception {
 
         //arrange
-        Member mentee = Member.builder()
+        Mentee mentee = Mentee.builder()
                 .email("jun@gmail.com")
                 .name("김준명")
                 .passWord("1234")
                 .role(Role.Mentee)
                 .build();
 
-        Member savedMentee = menteeMyPageRepository.save(mentee);
+        Mentee savedMentee = menteeMyPageRepository.save(mentee);
 
 
         //act
-        Member foundMentee = menteeMyPageRepository.findByEmail(savedMentee.getEmail()).get();
+        Mentee foundMentee = menteeMyPageRepository.findByEmail(savedMentee.getEmail()).get();
 
 
         //assert
@@ -55,17 +55,17 @@ class MenteeMyPageServiceTest {
     void find_mentee_dto_info() throws Exception {
 
         //arrange
-        Member mentee = Member.builder()
+        Mentee mentee = Mentee.builder()
                 .email("jun@gmail.com")
                 .name("김준명")
                 .passWord("1234")
                 .role(Role.Mentee)
                 .build();
 
-        Member savedMentee = menteeMyPageRepository.save(mentee);
+        Mentee savedMentee = menteeMyPageRepository.save(mentee);
 
         //act
-        MemberDto foundMenteeDto = menteeMyPageService.findByEmail(savedMentee.getEmail());
+        MenteeDto foundMenteeDto = menteeMyPageService.findByEmail(savedMentee.getEmail());
 
         //assert
         assertThat(mentee.getId()).isEqualTo(foundMenteeDto.getId());

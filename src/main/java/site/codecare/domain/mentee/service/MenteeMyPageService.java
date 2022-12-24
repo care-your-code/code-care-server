@@ -4,11 +4,11 @@ package site.codecare.domain.mentee.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.codecare.domain.mentee.MemberClass;
-import site.codecare.domain.mentee.MemberClassDto;
-import site.codecare.domain.mentee.dto.UpdateMemberRequest;
-import site.codecare.domain.mentee.dto.MemberDto;
-import site.codecare.domain.mentee.entity.Member;
+import site.codecare.domain.mentee.MenteeClass;
+import site.codecare.domain.mentee.MenteeClassDto;
+import site.codecare.domain.mentee.dto.UpdateMenteeRequest;
+import site.codecare.domain.mentee.dto.MenteeDto;
+import site.codecare.domain.mentee.entity.Mentee;
 import site.codecare.domain.mentee.repository.MenteeMyPageRepository;
 
 import java.util.List;
@@ -22,49 +22,49 @@ public class MenteeMyPageService {
     private final MenteeMyPageRepository menteeMyPageRepository;
 
     @Transactional
-    public void update(Long id, UpdateMemberRequest request) {
-        Member member = findMemberById(id);
+    public void update(Long id, UpdateMenteeRequest request) {
+        Mentee mentee = findMemberById(id);
 
-        if(!member.getName().equals(request.getName())) {
-            member.updateName(request.getName());
+        if(!mentee.getName().equals(request.getName())) {
+            mentee.updateName(request.getName());
         }
 
-        if(!member.getPhoneNumber().equals(request.getPhoneNumber())) {
-            member.updatePhoneNumber(request.getPhoneNumber());
+        if(!mentee.getPhoneNumber().equals(request.getPhoneNumber())) {
+            mentee.updatePhoneNumber(request.getPhoneNumber());
         }
 
-        if(!member.getProfile().equals(request.getProfile())) {
-            member.updateProfile(request.getProfile());
+        if(!mentee.getProfile().equals(request.getProfile())) {
+            mentee.updateProfile(request.getProfile());
         }
     }
 
 
-    public MemberDto findByEmail(String email) {
-        Member member = findMemberByEmail(email);
-        return new MemberDto(member);
+    public MenteeDto findByEmail(String email) {
+        Mentee mentee = findMemberByEmail(email);
+        return new MenteeDto(mentee);
     }
 
-    private Member findMemberByEmail(String email) {
+    private Mentee findMemberByEmail(String email) {
         return menteeMyPageRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException(email + " email is not found."));
     }
 
 
-    public MemberDto findById(Long id) {
-        Member member = findMemberById(id);
-        return new MemberDto(member);
+    public MenteeDto findById(Long id) {
+        Mentee mentee = findMemberById(id);
+        return new MenteeDto(mentee);
     }
 
-    private Member findMemberById(Long id) {
+    private Mentee findMemberById(Long id) {
         return menteeMyPageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(id + " memberId is not found."));
     }
 
-    public List<MemberClassDto> findClassByEmail(String email) {
-        List<MemberClass> memberClasses = menteeMyPageRepository.findClassByEmail(email);
+    public List<MenteeClassDto> findClassByEmail(String email) {
+        List<MenteeClass> memberClasses = menteeMyPageRepository.findClassByEmail(email);
 
-        List<MemberClassDto> classDtos = memberClasses.stream()
-                .map(o -> new MemberClassDto(o))
+        List<MenteeClassDto> classDtos = memberClasses.stream()
+                .map(o -> new MenteeClassDto(o))
                 .collect(Collectors.toList());
 
         return classDtos;

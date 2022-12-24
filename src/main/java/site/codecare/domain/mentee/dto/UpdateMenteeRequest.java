@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class UpdateMemberRequest {
+public class UpdateMenteeRequest {
 
     @Schema(description = "이름", example = "도비")
     private String name;

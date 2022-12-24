@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberClassDto {
-    private MemberClass memberClass;
+public class MenteeClassDto {
+    private MenteeClass memberClass;
 }

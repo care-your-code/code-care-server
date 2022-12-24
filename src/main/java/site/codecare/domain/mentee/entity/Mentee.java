@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @SuperBuilder
 @Getter
-public class Member extends BaseEntity {
+public class Mentee extends BaseEntity {
 
 
     @Column(name = "email", unique = true)

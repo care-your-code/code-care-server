@@ -1,4 +1,4 @@
 package site.codecare.domain.mentee;
 
-public class MemberClass {
+public class MenteeClass {
 }

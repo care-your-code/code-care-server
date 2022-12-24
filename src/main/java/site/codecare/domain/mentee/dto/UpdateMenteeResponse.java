@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor
-public class UpdateMemberResponse {
+public class UpdateMenteeResponse {
 
     private Long id;
     private String name;

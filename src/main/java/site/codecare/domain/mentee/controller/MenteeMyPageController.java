@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.codecare.domain.mentee.dto.*;
-import site.codecare.domain.mentee.MemberClassDto;
+import site.codecare.domain.mentee.MenteeClassDto;
 import site.codecare.domain.mentee.service.MenteeMyPageService;
 import site.codecare.global.base.RsData;
 import site.codecare.util.Ut;
@@ -30,19 +30,19 @@ public class MenteeMyPageController {
 
     @Operation(description = "개인정보조회", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping(value = "/info", consumes = ALL_VALUE)
-    public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MemberEmailRequest request) {
-        MemberDto memberDto = menteeMyPageService.findByEmail(request.getEmail());
+    public ResponseEntity<RsData<MemberResponse>> menteeInfo(@Parameter @Valid MenteeEmailRequest request) {
+        MenteeDto menteeDto = menteeMyPageService.findByEmail(request.getEmail());
         return Ut.sp.responseEntityOf
-                (RsData.successOf(new MemberResponse(memberDto)));
+                (RsData.successOf(new MemberResponse(menteeDto)));
     }
 
 
     @Operation(description = "개인정보수정")
     @PatchMapping("/info")
-    public UpdateMemberResponse menteeInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMemberRequest request) {
+    public UpdateMenteeResponse menteeInfo(@Parameter @PathVariable("id") Long id, @Parameter @Valid UpdateMenteeRequest request) {
         menteeMyPageService.update(id, request);
-        MemberDto memberDto = menteeMyPageService.findById(id);
-        return new UpdateMemberResponse(memberDto.getId(), memberDto.getName(), memberDto.getPhoneNumber(), memberDto.getProfile());
+        MenteeDto menteeDto = menteeMyPageService.findById(id);
+        return new UpdateMenteeResponse(menteeDto.getId(), menteeDto.getName(), menteeDto.getPhoneNumber(), menteeDto.getProfile());
     }
 
 
@@ -51,11 +51,11 @@ public class MenteeMyPageController {
      */
     @Operation(description = "멘티 수강중인 클래스 조회", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping(value = "/menteeClassInfo", consumes = ALL_VALUE)
-    public ResponseEntity<RsData<MemberClassResponse>> mypageClass(@Parameter @Valid MemberEmailRequest request) {
-        List<MemberClassDto> classDtos = menteeMyPageService.findClassByEmail(request.getEmail());
+    public ResponseEntity<RsData<MenteeClassResponse>> mypageClass(@Parameter @Valid MenteeEmailRequest request) {
+        List<MenteeClassDto> classDtos = menteeMyPageService.findClassByEmail(request.getEmail());
 
         return Ut.sp.responseEntityOf
-                (RsData.successOf(new MemberClassResponse(classDtos)));
+                (RsData.successOf(new MenteeClassResponse(classDtos)));
     }
 
 }

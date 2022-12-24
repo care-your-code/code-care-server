@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberEmailRequest {
+public class MenteeEmailRequest {
 
     @Schema(description = "이메일", example = "member1@gmail.com")
     private String email;
